@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 //configuration for public folder
 import path from "path";
-app.use(express.static(path.resolve() + "/public_html"));
+app.use(express.static(path.resolve() + "/src/public_html"));
 //configuration for accept json from post
 import bodyParser from "body-parser";
 app.use(bodyParser.urlencoded({ extended: true }));
