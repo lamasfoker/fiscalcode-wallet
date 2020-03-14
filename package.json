@@ -3,6 +3,9 @@
     "start": "node src/server.js"
   },
   "type": "module",
+  "engines" : {
+    "node" : "^13.10"
+  },
   "dependencies": {
     "express": "^4.17.1"
   }
