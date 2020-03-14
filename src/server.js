@@ -11,6 +11,13 @@ app.get('/status', (req, res) => {
   })
 });
 
+app.post('/generate-fiscal-code', (req, res) => {
+  res.json({
+    isValid: true,
+    fiscalcode: 'valid-fiscal-code',
+  })
+});
+
 app.get('*', (req, res) => {
   res.json({
     status: 'Page Not Found',
