@@ -1,6 +1,6 @@
 "use strict";
 
-import Utils from "../../services/Utils.js";
+const $ = document.querySelector.bind(document);
 
 let Validate = {
 
@@ -17,7 +17,7 @@ let Validate = {
     }
 
     , after_render: async () => {
-        const headerTitle = document.getElementById('header-title');
+        const headerTitle = $('#header-title');
         headerTitle.innerText = 'Validatore di Codice Fiscale';
     }
 };

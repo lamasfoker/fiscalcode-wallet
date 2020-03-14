@@ -1,5 +1,6 @@
 "use strict";
 
+const $ = document.querySelector.bind(document);
 import Utils from './services/Utils.js'
 import HeaderBar from './views/components/HeaderBar.js'
 import BottomBar from './views/components/BottomBar.js'
@@ -19,8 +20,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('[SW] Service worker registration failed', e);
     }
 
-    const headerBarContainer = document.querySelector('#headerbar-container');
-    const bottomBarContainer = document.querySelector('#bottombar-container');
+    const headerBarContainer = $('#headerbar-container');
+    const bottomBarContainer = $('#bottombar-container');
 
     headerBarContainer.innerHTML = await HeaderBar.render();
     bottomBarContainer.innerHTML = await BottomBar.render();
@@ -38,7 +39,7 @@ const routes = {
 };
 
 const router = async () => {
-    const content = document.querySelector('#main-container');
+    const content = $('#main-container');
     let parsedURL = location.hash.slice(1);
     let page = routes[parsedURL] ? routes[parsedURL] : List;
     content.innerHTML = page.render();

@@ -1,5 +1,7 @@
 "use strict";
 
+const $ = document.querySelector.bind(document);
+
 let Generate = {
 
     render: () => {
@@ -15,7 +17,7 @@ let Generate = {
     }
 
     , after_render: async () => {
-        const headerTitle = document.getElementById('header-title');
+        const headerTitle = $('#header-title');
         headerTitle.innerText = 'Calcolatore di Codice Fiscale';
     }
 };
