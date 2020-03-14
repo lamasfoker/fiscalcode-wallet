@@ -24,6 +24,7 @@ const Utils = {
     , post: async (url, body) => {
         let headers = new Headers();
         headers.set('Accept', 'application/json');
+        headers.set('Content-Type', 'application/json');
 
         let response = await fetch(url, {
             method: 'POST',

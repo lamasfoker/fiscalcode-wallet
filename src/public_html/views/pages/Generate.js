@@ -88,7 +88,7 @@ let Generate = {
         const body = {
             firstname: $('#firstname').value,
             lastname: $('#lastname').value,
-            birthday: $('#birthdate').value,
+            birthdate: $('#birthdate').value,
             isMale: $('#male').checked,
             municipality: $('#municipality').value,
         };
