@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import Person from "./Model/Person.js";
+import PersonValidator from "./Service/PersonValidator.js";
 const app = express();
 const PORT = process.env.PORT || 4000;
 
@@ -20,9 +21,15 @@ app.get("/status", (req, res) => {
 
 app.post("/generate-fiscal-code", (req, res) => {
   let person = new Person(req.body.firstname, req.body.lastname, req.body.birthdate, req.body.isMale, req.body.municipality);
-  console.log(person);
+  let validator = new PersonValidator();
+  if (!validator.validate(person)) {
+    res.json({
+      isValid: false,
+      message: "valid-fiscal-code",
+    })
+  }
   res.json({
-    isValid: true,
+    isValid: false,
     fiscalcode: "valid-fiscal-code",
   })
 });
