@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>Errore di Connessione</title>
+        <link rel="manifest" href="/manifest.json">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="theme-color" content="white"/>
+        <style type="text/css">
+            body {
+                margin: 0;
+                background: #1d1a19;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            h1 {
+                margin: 0;
+                margin-bottom: 15px;
+                font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 22px;
+                line-height: 1.2;
+            }
+
+            p {
+                margin: 0;
+            }
+
+            .page {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+            }
+
+            .content {
+                padding: 15px;
+                font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 15px;
+                color: #ffffff;
+                line-height: 1.4;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body class="fullscreen">
+        <div class="page">
+            <div id="content" class="content">
+                <img src="/assets/images/offline.png" alt="you are offline">
+                <h1 id="title">Impossibile connettersi al server</h1>
+                <p id="paragraph">Controlla lo stato della tua connessione</p>
+            </div>
+        </div>
+    </body>
+</html>
