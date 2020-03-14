@@ -1,14 +1,15 @@
+//my import
+import Person from "./app/code/Model/Person.js";
+import PersonValidator from "./app/code/Service/PersonValidator.js";
+//starting configuration
 import express from "express";
-import bodyParser from "body-parser";
-import Person from "./Model/Person.js";
-import PersonValidator from "./Service/PersonValidator.js";
 const app = express();
 const PORT = process.env.PORT || 4000;
-
 //configuration for public folder
 import path from "path";
 app.use(express.static(path.resolve() + "/public_html"));
 //configuration for accept json from post
+import bodyParser from "body-parser";
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
