@@ -16,7 +16,7 @@ let Generate = {
                     </div>
                     <div class="row">
                         <div class="input-field col s12 text">
-                            <input name="firstname" id="firstname" type="text" autocomplete="off" class="browser-default">
+                            <input name="firstName" id="firstName" type="text" autocomplete="off" class="browser-default">
                         </div>
                     </div>
                     <div class="row label">
@@ -26,7 +26,7 @@ let Generate = {
                     </div>
                     <div class="row">
                         <div class="input-field col s12 text">
-                            <input name="lastname" id="lastname" type="text" autocomplete="off" class="browser-default">
+                            <input name="lastName" id="lastName" type="text" autocomplete="off" class="browser-default">
                         </div>
                     </div>
                     <div class="row label">
@@ -36,7 +36,7 @@ let Generate = {
                     </div>
                     <div class="row">
                         <div class="input-field col s12 text">
-                            <input name="birthdate" id="birthdate" type="text" autocomplete="off" class="browser-default" placeholder="gg/mm/aaaa">
+                            <input name="birthDate" id="birthDate" type="text" autocomplete="off" class="browser-default" placeholder="gg/mm/aaaa">
                         </div>
                     </div>
                     <div class="row label">
@@ -86,16 +86,16 @@ let Generate = {
     , generateFiscalCode: async (event) => {
         event.preventDefault();
         const body = {
-            firstname: $('#firstname').value,
-            lastname: $('#lastname').value,
-            birthdate: $('#birthdate').value,
+            firstName: $('#firstName').value,
+            lastName: $('#lastName').value,
+            birthDate: $('#birthDate').value,
             isMale: $('#male').checked,
             municipality: $('#municipality').value,
         };
         let response = await Utils.post('generate-fiscal-code', JSON.stringify(body));
 
         if (response.isValid) {
-            M.toast({html: response.fiscalcode});
+            M.toast({html: response.fiscalCode});
         }
     }
 };

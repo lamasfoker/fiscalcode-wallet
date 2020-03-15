@@ -1,10 +1,10 @@
 "use strict";
 
 export default class Person{
-    constructor(firstname, lastname, birthdate, isMale, municipality) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.birthdate = birthdate;
+    constructor(firstName, lastName, birthDate, isMale, municipality) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
         this.isMale = isMale;
         this.municipality = municipality;
     }

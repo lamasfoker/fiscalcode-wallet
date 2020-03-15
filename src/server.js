@@ -1,6 +1,6 @@
 //my import
 import Person from "./app/code/Model/Person.js";
-import PersonValidator from "./app/code/Service/PersonValidator.js";
+import FiscalCodeGenerator from "./app/code/Service/FiscalCodeGenerator.js";
 //starting configuration
 import express from "express";
 const app = express();
@@ -21,17 +21,12 @@ app.get("/status", (req, res) => {
 });
 
 app.post("/generate-fiscal-code", (req, res) => {
-  let person = new Person(req.body.firstname, req.body.lastname, req.body.birthdate, req.body.isMale, req.body.municipality);
-  let validator = new PersonValidator();
-  if (!validator.validate(person)) {
-    res.json({
-      isValid: false,
-      message: "valid-fiscal-code",
-    })
-  }
+  let person = new Person(req.body.firstName, req.body.lastName, req.body.birthDate, req.body.isMale, req.body.municipality);
+  let generator = new FiscalCodeGenerator();
+  const fiscalCode = generator.generate(person);
   res.json({
-    isValid: false,
-    fiscalcode: "valid-fiscal-code",
+    isValid: fiscalCode === null,
+    data: fiscalCode,
   })
 });
 
