@@ -20,13 +20,13 @@ app.get("/status", (req, res) => {
   })
 });
 
-app.post("/generate-fiscal-code", (req, res) => {
+app.post("/generate-fiscal-code", async (req, res) => {
   let person = new Person(req.body.firstName, req.body.lastName, req.body.birthDate, req.body.isMale, req.body.municipality);
   let generator = new FiscalCodeGenerator();
-  const fiscalCode = generator.generate(person);
+  const fiscalCode = await generator.generate(person);
   res.json({
-    isValid: fiscalCode === null,
-    data: fiscalCode,
+    isValid: fiscalCode !== null,
+    fiscalCode: fiscalCode,
   })
 });
 
