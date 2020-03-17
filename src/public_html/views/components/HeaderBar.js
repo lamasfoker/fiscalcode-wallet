@@ -1,8 +1,7 @@
 "use strict";
 
-let HeaderBar = {
-
-    render: () => {
+export default class HeaderBar{
+    static render() {
         return `
             <header>
                 <nav class="top-nav fixed-nav-bar">
@@ -19,6 +18,4 @@ let HeaderBar = {
             </header>
         `
     }
-};
-
-export default HeaderBar;
+}

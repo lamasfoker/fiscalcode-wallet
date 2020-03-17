@@ -38,10 +38,10 @@ const routes = {
     , '/list': List
 };
 
-const router = async () => {
+const router = () => {
     const content = $('#main-container');
     let parsedURL = location.hash.slice(1);
     let page = routes[parsedURL] ? routes[parsedURL] : List;
     content.innerHTML = page.render();
-    await page.after_render();
+    page.after_render();
 };

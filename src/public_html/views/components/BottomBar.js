@@ -1,8 +1,7 @@
 "use strict";
 
-let BottomBar = {
-
-    render: () => {
+export default class BottomBar{
+    static render() {
         return `
             <footer>
                 <nav class="top-nav fixed-bottom-bar">
@@ -21,6 +20,4 @@ let BottomBar = {
             </footer>
         `
     }
-};
-
-export default BottomBar;
+}

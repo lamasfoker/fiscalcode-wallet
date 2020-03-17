@@ -3,9 +3,8 @@
 const $ = document.querySelector.bind(document);
 import Utils from "../../services/Utils.js";
 
-let Generate = {
-
-    render: () => {
+export default class Generate{
+    static render() {
         return `
             <div class="row">
                 <form class="col s12" method="POST" action="" id="generate-fiscal-code-form">
@@ -76,14 +75,15 @@ let Generate = {
         `
     }
 
-    , after_render: async () => {
+    static after_render() {
+        const generate = new Generate();
         const form = $('#generate-fiscal-code-form');
         const headerTitle = $('#header-title');
         headerTitle.innerText = 'Calcolatore di Codice Fiscale';
-        form.onsubmit = Generate.generateFiscalCode;
+        form.onsubmit = generate.generateFiscalCode;
     }
 
-    , generateFiscalCode: async (event) => {
+    async generateFiscalCode(event) {
         event.preventDefault();
         const body = {
             firstName: $('#firstName').value,
@@ -92,12 +92,10 @@ let Generate = {
             isMale: $('#male').checked,
             municipality: $('#municipality').value,
         };
-        let response = await Utils.post('generate-fiscal-code', JSON.stringify(body));
+        let response = await Utils.post('/generate-fiscal-code', JSON.stringify(body));
 
         if (response.isValid) {
             M.toast({html: response.fiscalCode});
         }
     }
-};
-
-export default Generate;
+}

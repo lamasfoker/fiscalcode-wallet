@@ -2,9 +2,8 @@
 
 const $ = document.querySelector.bind(document);
 
-let List = {
-
-    render: () => {
+export default class List{
+    static render() {
         return `
             <div class="no-elements">
                 <img src="/assets/images/no-elements.svg" alt="no researches saved">
@@ -16,10 +15,8 @@ let List = {
         `
     }
 
-    , after_render: async () => {
+    static after_render() {
         const headerTitle = $('#header-title');
         headerTitle.innerText = 'Codici Fiscali Salvati';
     }
-};
-
-export default List;
+}

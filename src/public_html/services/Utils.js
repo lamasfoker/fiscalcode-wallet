@@ -1,15 +1,15 @@
 "use strict";
 
-const Utils = {
-    isBrowserCompatible: () => {
+export default class Utils {
+    static isBrowserCompatible() {
         if (!('serviceWorker' in navigator)) {
             console.warn('Service workers are not supported by this browser');
             return false;
         }
-        return true
+        return true;
     }
 
-    , get: async (url) => {
+    static async get(url) {
         let headers = new Headers();
         headers.set('Accept', 'application/json');
 
@@ -21,7 +21,7 @@ const Utils = {
         return response.json();
     }
 
-    , post: async (url, body) => {
+    static async post(url, body) {
         let headers = new Headers();
         headers.set('Accept', 'application/json');
         headers.set('Content-Type', 'application/json');
@@ -34,6 +34,4 @@ const Utils = {
 
         return response.json();
     }
-};
-
-export default Utils;
+}
