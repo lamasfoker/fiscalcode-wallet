@@ -2,6 +2,7 @@
 
 const $ = document.querySelector.bind(document);
 import Utils from "../../services/Utils.js";
+import People from "../../models/People.js";
 
 export default class Generate{
     static render() {
@@ -84,6 +85,7 @@ export default class Generate{
     }
 
     async generateFiscalCode(event) {
+        const people = new People();
         event.preventDefault();
         const body = {
             firstName: $('#firstName').value,
@@ -95,7 +97,9 @@ export default class Generate{
         let response = await Utils.post('/generate-fiscal-code', JSON.stringify(body));
 
         if (response.isValid) {
-            M.toast({html: response.fiscalCode});
+            const fiscalCode = response.fiscalCode;
+            M.toast({html: fiscalCode});
+            people.insert({...body, fiscalCode: fiscalCode});
         }
     }
 }
