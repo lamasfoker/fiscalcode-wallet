@@ -30,6 +30,12 @@ app.post("/generate-fiscal-code", async (req, res) => {
   })
 });
 
+app.post("/validate-fiscal-code", async (req, res) => {
+  res.json({
+    message: 'ok'
+  })
+});
+
 app.get("*", (req, res) => {
   res.json({
     status: "Page Not Found",
