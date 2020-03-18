@@ -1,7 +1,9 @@
 "use strict";
 
+const $ = document.querySelector.bind(document);
+
 export default class BottomBar{
-    static render() {
+    static template() {
         return `
             <footer>
                 <nav class="top-nav fixed-bottom-bar">
@@ -19,5 +21,9 @@ export default class BottomBar{
                 </nav>
             </footer>
         `
+    }
+
+    static render() {
+        $('#bottombar-container').innerHTML = this.template();
     }
 }

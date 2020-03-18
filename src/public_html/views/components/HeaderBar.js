@@ -1,7 +1,9 @@
 "use strict";
 
+const $ = document.querySelector.bind(document);
+
 export default class HeaderBar{
-    static render() {
+    static template() {
         return `
             <header>
                 <nav class="top-nav fixed-nav-bar">
@@ -17,5 +19,9 @@ export default class HeaderBar{
                 </nav>
             </header>
         `
+    }
+
+    static render() {
+        $('#headerbar-container').innerHTML = this.template();
     }
 }

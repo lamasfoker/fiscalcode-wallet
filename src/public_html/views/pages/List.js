@@ -4,7 +4,7 @@ const $ = document.querySelector.bind(document);
 import People from "../../models/People.js";
 
 export default class List{
-    static render() {
+    static emptyTemplate() {
         return `
             <div class="no-elements">
                 <img src="/assets/images/no-elements.svg" alt="no researches saved">
@@ -16,7 +16,7 @@ export default class List{
         `
     }
 
-    static skeleton_render() {
+    static fullTemplate() {
         return `
             {{each(options.list)}}
                 <div class="row">
@@ -39,12 +39,18 @@ export default class List{
         `
     }
 
-    static after_render() {
+    static render() {
         //TODO: add delete behaviour
         const people = new People();
+        const container = $('#main-container');
         $('#header-title').innerText = 'Codici Fiscali Salvati';
-        $('#main-container').innerHTML = Sqrl.Render(this.skeleton_render(), {
-            list: people.getList()
-        })
+        let list = people.getList();
+        if (list.length > 0) {
+            container.innerHTML = Sqrl.Render(this.fullTemplate(), {
+                list: people.getList()
+            });
+        } else {
+            container.innerHTML = this.emptyTemplate();
+        }
     }
 }

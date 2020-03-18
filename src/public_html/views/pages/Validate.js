@@ -3,7 +3,7 @@
 const $ = document.querySelector.bind(document);
 
 export default class Validate{
-    static render() {
+    static template() {
         return `
             <div class="no-elements">
                 <img src="/assets/images/no-elements.svg" alt="no researches saved">
@@ -15,7 +15,8 @@ export default class Validate{
         `
     }
 
-    static after_render() {
+    static render() {
         $('#header-title').innerText = 'Validatore di Codice Fiscale';
+        $('#main-container').innerHTML = this.template();
     }
 }

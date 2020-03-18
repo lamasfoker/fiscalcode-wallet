@@ -1,11 +1,11 @@
 "use strict";
 
 const $ = document.querySelector.bind(document);
-import Utils from "../../services/Utils.js";
+import api from "../../services/Utils.js";
 import People from "../../models/People.js";
 
 export default class Generate{
-    static render() {
+    static template() {
         return `
             <div class="row">
                 <form class="col s12" method="POST" action="" id="generate-fiscal-code-form">
@@ -76,13 +76,13 @@ export default class Generate{
         `
     }
 
-    static after_render() {
-        const generate = new Generate();
+    static render() {
         $('#header-title').innerText = 'Calcolatore di Codice Fiscale';
-        $('#generate-fiscal-code-form').onsubmit = generate.generateFiscalCode;
+        $('#main-container').innerHTML = this.template();
+        $('#generate-fiscal-code-form').onsubmit = this.generateFiscalCode;
     }
 
-    async generateFiscalCode(event) {
+    static async generateFiscalCode(event) {
         const people = new People();
         event.preventDefault();
         const body = {
@@ -92,7 +92,7 @@ export default class Generate{
             isMale: $('#male').checked,
             municipality: $('#municipality').value,
         };
-        let response = await Utils.post('/generate-fiscal-code', JSON.stringify(body));
+        let response = await api.post('/generate-fiscal-code', JSON.stringify(body));
 
         if (response.isValid) {
             const fiscalCode = response.fiscalCode;

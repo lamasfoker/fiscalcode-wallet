@@ -1,6 +1,5 @@
 "use strict";
 
-const $ = document.querySelector.bind(document);
 import Utils from './services/Utils.js'
 import HeaderBar from './views/components/HeaderBar.js'
 import BottomBar from './views/components/BottomBar.js'
@@ -20,8 +19,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('[SW] Service worker registration failed', e);
     }
 
-    $('#headerbar-container').innerHTML = HeaderBar.render();
-    $('#bottombar-container').innerHTML = BottomBar.render();
+    HeaderBar.render();
+    BottomBar.render();
     window.onhashchange = router;
 
     window.dispatchEvent(new HashChangeEvent("hashchange"));
@@ -38,6 +37,5 @@ const routes = {
 const router = () => {
     let parsedURL = location.hash.slice(1);
     let page = routes[parsedURL] ? routes[parsedURL] : List;
-    $('#main-container').innerHTML = page.render();
-    page.after_render();
+    page.render();
 };

@@ -9,18 +9,6 @@ export default class Utils {
         return true;
     }
 
-    static async get(url) {
-        let headers = new Headers();
-        headers.set('Accept', 'application/json');
-
-        let response = await fetch(url, {
-            method: 'GET',
-            headers
-        });
-
-        return response.json();
-    }
-
     static async post(url, body) {
         let headers = new Headers();
         headers.set('Accept', 'application/json');
