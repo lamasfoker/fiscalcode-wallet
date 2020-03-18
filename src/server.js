@@ -13,13 +13,6 @@ import bodyParser from "body-parser";
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/status", (req, res) => {
-  res.json({
-    status: "ok",
-    statusCode: 200,
-  })
-});
-
 app.post("/generate-fiscal-code", async (req, res) => {
   let person = new Person(req.body.firstName, req.body.lastName, req.body.birthDate, req.body.isMale, req.body.municipality);
   let generator = new FiscalCodeGenerator();
@@ -37,10 +30,8 @@ app.post("/validate-fiscal-code", async (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.json({
-    status: "Page Not Found",
-    statusCode: 404,
-  })
+  //TODO: redirect all 404 GET to index.html
+  res.send('<h1>404 Page Not Found</h1>')
 });
 
 app.listen(PORT, () => console.log(`> Ready on http://localhost:${PORT}`));
