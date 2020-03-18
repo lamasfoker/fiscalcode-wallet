@@ -16,7 +16,6 @@ export default class Validate{
     }
 
     static after_render() {
-        const headerTitle = $('#header-title');
-        headerTitle.innerText = 'Validatore di Codice Fiscale';
+        $('#header-title').innerText = 'Validatore di Codice Fiscale';
     }
 }

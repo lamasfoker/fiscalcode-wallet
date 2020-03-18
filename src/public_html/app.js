@@ -20,11 +20,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('[SW] Service worker registration failed', e);
     }
 
-    const headerBarContainer = $('#headerbar-container');
-    const bottomBarContainer = $('#bottombar-container');
-
-    headerBarContainer.innerHTML = await HeaderBar.render();
-    bottomBarContainer.innerHTML = await BottomBar.render();
+    $('#headerbar-container').innerHTML = HeaderBar.render();
+    $('#bottombar-container').innerHTML = BottomBar.render();
     window.onhashchange = router;
 
     window.dispatchEvent(new HashChangeEvent("hashchange"));
@@ -39,9 +36,8 @@ const routes = {
 };
 
 const router = () => {
-    const content = $('#main-container');
     let parsedURL = location.hash.slice(1);
     let page = routes[parsedURL] ? routes[parsedURL] : List;
-    content.innerHTML = page.render();
+    $('#main-container').innerHTML = page.render();
     page.after_render();
 };

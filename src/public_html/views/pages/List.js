@@ -16,7 +16,6 @@ export default class List{
     }
 
     static after_render() {
-        const headerTitle = $('#header-title');
-        headerTitle.innerText = 'Codici Fiscali Salvati';
+        $('#header-title').innerText = 'Codici Fiscali Salvati';
     }
 }

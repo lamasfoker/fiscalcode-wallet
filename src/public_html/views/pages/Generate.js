@@ -78,10 +78,8 @@ export default class Generate{
 
     static after_render() {
         const generate = new Generate();
-        const form = $('#generate-fiscal-code-form');
-        const headerTitle = $('#header-title');
-        headerTitle.innerText = 'Calcolatore di Codice Fiscale';
-        form.onsubmit = generate.generateFiscalCode;
+        $('#header-title').innerText = 'Calcolatore di Codice Fiscale';
+        $('#generate-fiscal-code-form').onsubmit = generate.generateFiscalCode;
     }
 
     async generateFiscalCode(event) {
