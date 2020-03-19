@@ -91,7 +91,7 @@ export default class FiscalCodeGenerator{
     }
 
     getBirthDate(birthDateString) {
-        let dateParts = birthDateString.split("/");
-        return new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+        birthDateString = birthDateString.split('/').reverse().join('-');
+        return new Date(birthDateString);
     }
 }
