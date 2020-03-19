@@ -91,6 +91,7 @@ export default class Validate{
         $('#validate-fiscal-code-form').onsubmit = this.validateFiscalCode;
     }
 
+    //TODO: if other data other than fiscal code are not filled, isMale value have to be undefined
     static async validateFiscalCode(event) {
         event.preventDefault();
         const body = {

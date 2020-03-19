@@ -99,5 +99,6 @@ export default class Generate{
             M.toast({html: fiscalCode});
             people.insert({...body, fiscalCode: fiscalCode});
         }
+        //TODO: the user has the possibility to recalculate the fiscal code if he said that it is not correct
     }
 }
