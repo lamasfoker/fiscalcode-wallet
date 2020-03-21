@@ -2,13 +2,13 @@
 
 const $ = document.querySelector.bind(document);
 import api from "../../services/Utils.js";
-import People from "../../models/People.js";
+import Session from "../../models/Session.js";
 
 export default class Generate{
     static template() {
         return `
             <div class="row">
-                <form class="col s12" method="POST" action="" id="generate-fiscal-code-form">
+                <form class="col s12" method="POST" action="#/save-modal" id="generate-fiscal-code-form">
                     <div class="row label">
                         <div class="col s12">
                             <h6 class="label-inner">Nome</h6>
@@ -83,7 +83,6 @@ export default class Generate{
     }
 
     static async generateFiscalCode(event) {
-        const people = new People();
         event.preventDefault();
         const body = {
             firstName: $('#firstName').value,
@@ -95,10 +94,12 @@ export default class Generate{
         let response = await api.post('/generate-fiscal-code', JSON.stringify(body));
 
         if (response.isValid) {
+            const session = new Session();
             const fiscalCode = response.fiscalCode;
-            M.toast({html: fiscalCode});
-            people.insert({...body, fiscalCode: fiscalCode});
+            session.insert('person', {...body, fiscalCode: fiscalCode});
+            location.hash = event.target.getAttribute("action");
+        } else {
+            M.toast({html: 'Attenzione: controlla i dati inseriti', activationPercent: 0.4});
         }
-        //TODO: the user has the possibility to recalculate the fiscal code if he said that it is not correct
     }
 }
