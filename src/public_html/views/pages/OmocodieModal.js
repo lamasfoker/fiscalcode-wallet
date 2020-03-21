@@ -24,6 +24,7 @@ export default class OmocodieModal{
                 </form>
                 <div class="modal-footer">
                     <a href="#/list" id="save" class="modal-close waves-effect waves-green btn-flat">Salva</a>
+                    <a href="#/generate" class="modal-close waves-effect waves-green btn-flat">Annulla</a>
                 </div>
             </div>
         `

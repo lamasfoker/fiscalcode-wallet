@@ -15,6 +15,7 @@ export default class SaveModal{
                 <div class="modal-footer">
                     <a href="#/list" id="correct" class="modal-close waves-effect waves-green btn-flat">Sì</a>
                     <a href="#/omocodie-modal" id="incorrect" class="modal-close waves-effect waves-green btn-flat">No</a>
+                    <a href="#/generate" class="modal-close waves-effect waves-green btn-flat">Annulla</a>
                 </div>
             </div>
         `

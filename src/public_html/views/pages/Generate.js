@@ -83,6 +83,7 @@ export default class Generate{
     }
 
     static async generateFiscalCode(event) {
+        //TODO: if it is present on session the field can be autofilled
         event.preventDefault();
         const body = {
             firstName: $('#firstName').value,
