@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node src/server.js"
+    "start": "node -r esm src/server.js"
   },
   "type": "module",
   "engines": {
@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "esm": "^3.2.25",
     "express": "^4.17.1"
   }
 }
