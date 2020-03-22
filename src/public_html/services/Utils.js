@@ -10,7 +10,6 @@ export default class Utils {
     }
 
     static async post(url, body) {
-        //TODO: made here JSON.stringify
         let headers = new Headers();
         headers.set('Accept', 'application/json');
         headers.set('Content-Type', 'application/json');
@@ -18,7 +17,7 @@ export default class Utils {
         let response = await fetch(url, {
             method: 'POST',
             headers,
-            body: body
+            body: JSON.stringify(body)
         });
 
         return response.json();

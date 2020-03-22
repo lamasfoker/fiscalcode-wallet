@@ -92,7 +92,7 @@ export default class Generate{
             isMale: $('#male').checked,
             municipality: $('#municipality').value,
         };
-        let response = await api.post('/generate-fiscal-code', JSON.stringify(body));
+        let response = await api.post('/generate-fiscal-code', body);
 
         if (response.isValid) {
             const session = new Session();

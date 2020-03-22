@@ -35,7 +35,7 @@ export default class OmocodieModal{
         const session = new Session();
         const people = new People();
         const person = session.getById('person');
-        let response = await api.post('/calculate-omocodie', JSON.stringify({fiscalCode: person.fiscalCode}));
+        let response = await api.post('/calculate-omocodie', {fiscalCode: person.fiscalCode});
         $('#main-container').innerHTML = Sqrl.Render(this.template(), {
             list: response.list
         });

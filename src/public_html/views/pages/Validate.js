@@ -103,7 +103,7 @@ export default class Validate{
             municipality: $('#municipality').value,
         };
 
-        let response = await api.post('/validate-fiscal-code', JSON.stringify(body));
+        let response = await api.post('/validate-fiscal-code', body);
 
         M.toast({html: response.message});
     }
