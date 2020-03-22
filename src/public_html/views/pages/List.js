@@ -26,7 +26,7 @@ export default class List{
                                 <span class="card-title">{{@this.firstName}} {{@this.lastName}}</span>
                                 <p>Data di Nascita: {{@this.birthDate}}<br/>
                                 Sesso: {{if(@this.isMale)}}Uomo{{#else}}Donna{{/if}}<br/>
-                                Comune di Nascita: {{@this.municipality}}
+                                Comune di Nascita: {{@this.municipality}}<br/>
                                 Codice FIscale: {{@this.fiscalCode}}</p>
                             </div>
                             <div class="card-action">

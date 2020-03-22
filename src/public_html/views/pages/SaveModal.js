@@ -36,6 +36,7 @@ export default class SaveModal{
         $('#correct').onclick = async () => {
             const people = new People();
             people.insert(person);
+            session.deleteById('person');
         };
     }
 }

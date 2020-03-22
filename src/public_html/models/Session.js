@@ -17,6 +17,11 @@ export default class Session {
         return null;
     }
 
+    deleteById(id) {
+        let session = JSON.parse(sessionStorage.getItem(SESSION_KEY));
+        localStorage.setItem(SESSION_KEY, JSON.stringify(session.splice(id, 1)));
+    }
+
     insert(id, data) {
         data = {[id]: data};
         let session = JSON.parse(sessionStorage.getItem(SESSION_KEY));

@@ -48,6 +48,7 @@ export default class OmocodieModal{
         $('#save').onclick = async () => {
             person.fiscalCode = $('input:checked').value;
             people.insert(person);
+            session.deleteById('person');
         };
     }
 }
