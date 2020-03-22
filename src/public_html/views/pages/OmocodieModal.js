@@ -3,6 +3,7 @@
 const $ = document.querySelector.bind(document);
 import People from "../../models/People.js";
 import Session from "../../models/Session.js";
+import api from "../../services/Utils.js";
 
 export default class OmocodieModal{
     static template() {
@@ -30,12 +31,13 @@ export default class OmocodieModal{
         `
     }
 
-    static render() {
+    static async render() {
         const session = new Session();
         const people = new People();
         const person = session.getById('person');
+        let response = await api.post('/calculate-omocodie', JSON.stringify({fiscalCode: person.fiscalCode}));
         $('#main-container').innerHTML = Sqrl.Render(this.template(), {
-            list: ['a','b','c','d','e','f','g']
+            list: response.list
         });
         const modal = $('.modal');
         M.Modal.init(modal,{

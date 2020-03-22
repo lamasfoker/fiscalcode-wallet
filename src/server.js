@@ -2,6 +2,7 @@
 import Person from "./app/code/Model/Person.js";
 import FiscalCodeGenerator from "./app/code/Service/FiscalCodeGenerator.js";
 import FiscalCodeValidator from "./app/code/Service/FiscalCodeValidator.js";
+import OmocodieCalculator from "./app/code/Service/OmocodieCalculator.js";
 //starting configuration
 import express from "express";
 const app = express();
@@ -30,6 +31,13 @@ app.post("/validate-fiscal-code", async (req, res) => {
   const message = await validator.validate(person, req.body.fiscalCode);
   res.json({
     message: message
+  })
+});
+
+app.post("/calculate-omocodie", async (req, res) => {
+  let calculator = new OmocodieCalculator();
+  res.json({
+    list: calculator.calculate(req.body.fiscalCode)
   })
 });
 
