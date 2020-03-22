@@ -80,10 +80,10 @@ export default class Generate{
         $('#header-title').innerText = 'Calcolatore di Codice Fiscale';
         $('#main-container').innerHTML = this.template();
         $('#generate-fiscal-code-form').onsubmit = this.generateFiscalCode;
+        this.fillFormFromSession();
     }
 
     static async generateFiscalCode(event) {
-        //TODO: if it is present on session the field can be autofilled
         event.preventDefault();
         const body = {
             firstName: $('#firstName').value,
@@ -101,6 +101,20 @@ export default class Generate{
             location.hash = event.target.getAttribute("action");
         } else {
             M.toast({html: 'Attenzione: controlla i dati inseriti', activationPercent: 0.4});
+        }
+    }
+
+    static fillFormFromSession() {
+        const session = new Session();
+        const person = session.getById('person');
+        if (person) {
+            $('#firstName').value = person.firstName;
+            $('#lastName').value = person.lastName;
+            $('#birthDate').value = person.birthDate;
+            $('#municipality').value = person.municipality;
+            if (!person.isMale) {
+                $('#female').checked = true;
+            }
         }
     }
 }
