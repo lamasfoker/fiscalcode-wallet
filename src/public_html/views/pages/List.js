@@ -1,6 +1,7 @@
 "use strict";
 
 const $ = document.querySelector.bind(document);
+const $$ = document.querySelectorAll.bind(document);
 import People from "../../models/People.js";
 
 export default class List{
@@ -40,7 +41,6 @@ export default class List{
     }
 
     static render() {
-        //TODO: add delete behaviour
         const people = new People();
         const container = $('#main-container');
         $('#header-title').innerText = 'Codici Fiscali Salvati';
@@ -49,8 +49,44 @@ export default class List{
             container.innerHTML = Sqrl.Render(this.fullTemplate(), {
                 list: people.getList()
             });
+            this.addSwipeBehaviour();
         } else {
             container.innerHTML = this.emptyTemplate();
+        }
+    }
+
+    static addSwipeBehaviour() {
+        //TODO: add modal to ask to the user to delete the card
+        let previousX;
+        for (let card of $$('.card')) {
+            card.addEventListener('touchstart', (event) => {
+                previousX = event.changedTouches[0].screenX;
+            }, {passive: true});
+
+            card.addEventListener('touchmove', (event) => {
+                let currentX = event.changedTouches[0].screenX;
+                let currentOffset = card.style.left===''?0:Number.parseInt(card.style.left.slice(0, -2));
+                card.style.left = (currentOffset + currentX - previousX) + 'px';
+                previousX = currentX;
+                if (Math.abs(currentOffset) > 350) {
+                    let id = Number.parseInt(card.id.split('-')[1]);
+                    card.parentNode.parentNode.remove();
+                    const people = new People();
+                    people.deleteById(id);
+                }
+            }, {passive: true});
+
+            card.addEventListener('touchend', async (event) => {
+                let currentOffset = card.style.left===''?0:Number.parseInt(card.style.left.slice(0, -2));
+                if (Math.abs(currentOffset) < 350) {
+                    card.style.left = '0px';
+                } else {
+                    let id = Number.parseInt(card.id.split('-')[1]);
+                    card.parentNode.parentNode.remove();
+                    const people = new People();
+                    people.deleteById(id);
+                }
+            }, {passive: true});
         }
     }
 }
