@@ -42,8 +42,7 @@ app.post("/calculate-omocodie", async (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  //TODO: redirect all 404 GET to index.html
-  res.send('<h1>404 Page Not Found</h1>')
+  res.redirect(301, '/');
 });
 
 app.listen(PORT, () => console.log(`> Ready on http://localhost:${PORT}`));
