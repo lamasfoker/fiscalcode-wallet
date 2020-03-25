@@ -6,11 +6,11 @@ export default class OmocodieCalculator{
     calculate(fiscalCode) {
         const map = 'LMNPQRSTUV';
         const fiscalCodeGenerator = new FiscalCodeGenerator();
+        const numberPositionsInFiscalCode = [14, 13, 12, 10, 9, 7, 6];
         let list = [];
         for (let i = 0; i < 7; i++) {
             let modified = fiscalCode.slice(0, -1).split('');
-            let positions = [14, 13, 12, 10, 9, 7, 6].splice(0, i+1);
-            for (let position of positions) {
+            for (let position of numberPositionsInFiscalCode.slice(0, i+1)) {
                 modified[position] = map[modified[position]];
             }
             modified = modified.join('');
