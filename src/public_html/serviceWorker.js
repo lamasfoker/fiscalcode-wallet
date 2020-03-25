@@ -1,4 +1,4 @@
-let cacheName = 'coronavirus-live';
+let cacheName = 'fiscalcode-wallet';
 let filesToCache = [
     '/assets/images/offline.png',
     '/offline.html',

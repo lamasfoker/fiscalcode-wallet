@@ -72,7 +72,7 @@ export default class List{
                     let id = Number.parseInt(card.id.split('-')[1]);
                     card.parentNode.parentNode.remove();
                     const people = new People();
-                    // people.deleteById(id);
+                    people.deleteById(id);
                 }
             }, {passive: true});
 
@@ -84,7 +84,7 @@ export default class List{
                     let id = Number.parseInt(card.id.split('-')[1]);
                     card.parentNode.parentNode.remove();
                     const people = new People();
-                    // people.deleteById(id);
+                    people.deleteById(id);
                 }
             }, {passive: true});
         }
