@@ -6,8 +6,9 @@ import BottomBar from './views/components/BottomBar.js'
 import Validate from './views/pages/Validate.js'
 import List from './views/pages/List.js'
 import Generate from './views/pages/Generate.js'
-import SaveModal from "./views/pages/SaveModal.js";
-import OmocodieModal from "./views/pages/OmocodieModal.js";
+import Save from "./views/components/modals/Save.js";
+import Omocodie from "./views/components/modals/Omocodie.js";
+import Delete from "./views/components/modals/Delete.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     if (!Utils.isBrowserCompatible()) {
@@ -34,8 +35,9 @@ const routes = {
     , '/validate': Validate
     , '/generate': Generate
     , '/list': List
-    , '/save-modal': SaveModal
-    , '/omocodie-modal': OmocodieModal
+    , '/save-fiscalcode': Save
+    , '/check-omocodie': Omocodie
+    , '/delete-fiscalcode': Delete
 };
 
 const router = () => {

@@ -1,11 +1,11 @@
 "use strict";
 
 const $ = document.querySelector.bind(document);
-import People from "../../models/People.js";
-import Session from "../../models/Session.js";
-import api from "../../services/Utils.js";
+import People from "../../../models/People.js";
+import Session from "../../../models/Session.js";
+import api from "../../../services/Utils.js";
 
-export default class OmocodieModal{
+export default class Omocodie{
     static template() {
         return `
             <div class="modal">

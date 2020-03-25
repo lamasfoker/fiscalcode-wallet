@@ -1,10 +1,10 @@
 "use strict";
 
 const $ = document.querySelector.bind(document);
-import People from "../../models/People.js";
-import Session from "../../models/Session.js";
+import People from "../../../models/People.js";
+import Session from "../../../models/Session.js";
 
-export default class SaveModal{
+export default class Save{
     static template() {
         return `
             <div class="modal">
@@ -14,7 +14,7 @@ export default class SaveModal{
                 </div>
                 <div class="modal-footer">
                     <a href="#/list" id="correct" class="modal-close waves-effect waves-green btn-flat">Sì</a>
-                    <a href="#/omocodie-modal" id="incorrect" class="modal-close waves-effect waves-green btn-flat">No</a>
+                    <a href="#/check-omocodie" id="incorrect" class="modal-close waves-effect waves-green btn-flat">No</a>
                     <a href="#/generate" class="modal-close waves-effect waves-green btn-flat">Annulla</a>
                 </div>
             </div>

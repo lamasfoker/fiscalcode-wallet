@@ -8,7 +8,7 @@ export default class Generate{
     static template() {
         return `
             <div class="row">
-                <form class="col s12" method="POST" action="#/save-modal" id="generate-fiscal-code-form">
+                <form class="col s12" method="POST" action="#/save-fiscalcode" id="generate-fiscal-code-form">
                     <div class="row label">
                         <div class="col s12">
                             <h6 class="label-inner">Nome</h6>
