@@ -1,34 +1,39 @@
-var cacheName = 'coronavirus-live';
-var filesToCache = [
+let cacheName = 'coronavirus-live';
+let filesToCache = [
     '/assets/images/offline.png',
     '/offline.html',
     '/manifest.json',
-    '/favicon.ico'
+    '/favicon.ico',
+    '/assets/images/icon-144.png'
 ];
 
-/* Start the service worker and cache all of the app's content */
-self.addEventListener('install', function (e) {
-    e.waitUntil(
-        caches.open(cacheName).then(function (cache) {
+self.addEventListener('install', (event) => {
+    event.waitUntil(
+        caches.open(cacheName).then( (cache) => {
             return cache.addAll(filesToCache);
         })
     );
 });
 
-self.addEventListener('fetch', event => {
-    // request.mode = navigate isn't supported in all browsers
-    // so include a check for Accept: text/html header.
-    if (event.request.mode === 'navigate' || (event.request.method === 'GET' && event.request.headers.get('accept').includes('text/html'))) {
+self.addEventListener('fetch',event => {
+    if (event.request.method === 'GET' && event.request.headers.get('accept').includes('text/html')) {
         event.respondWith(
             fetch(event.request.url).catch(error => {
-                // Return the offline page
                 return caches.match('/offline.html');
+            }).then(async (response) => {
+                if (!response.redirected) {
+                    return response;
+                }
+                return new Response(await response.blob(), {
+                    headers: response.headers,
+                    status: response.status,
+                    statusText: response.statusText,
+                });
             })
         );
     } else {
-        // Respond with everything else if we can
         event.respondWith(caches.match(event.request)
-            .then(function (response) {
+            .then((response) => {
                 return response || fetch(event.request);
             })
         );
