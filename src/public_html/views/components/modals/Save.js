@@ -33,7 +33,7 @@ export default class Save{
             dismissible: false
         });
         M.Modal.getInstance(modal).open();
-        $('#correct').onclick = async () => {
+        $('#correct').onclick = () => {
             const people = new People();
             people.insert(person);
             session.deleteById('person');

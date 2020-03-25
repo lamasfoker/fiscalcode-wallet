@@ -2,6 +2,8 @@
 
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
+const DELETE_MODAL_URL = '#/delete-fiscalcode';
+import Session from "../../models/Session.js";
 import People from "../../models/People.js";
 
 export default class List{
@@ -56,7 +58,6 @@ export default class List{
     }
 
     static addSwipeBehaviour() {
-        //TODO: add modal to ask to the user to delete the card
         let previousX;
         for (let card of $$('.card')) {
             card.addEventListener('touchstart', (event) => {
@@ -69,10 +70,8 @@ export default class List{
                 card.style.left = (currentOffset + currentX - previousX) + 'px';
                 previousX = currentX;
                 if (Math.abs(currentOffset) > 350) {
-                    let id = Number.parseInt(card.id.split('-')[1]);
-                    card.parentNode.parentNode.remove();
-                    const people = new People();
-                    people.deleteById(id);
+                    this.saveIdToDeleteInSession(card);
+                    location.hash = DELETE_MODAL_URL;
                 }
             }, {passive: true});
 
@@ -81,12 +80,16 @@ export default class List{
                 if (Math.abs(currentOffset) < 350) {
                     card.style.left = '0px';
                 } else {
-                    let id = Number.parseInt(card.id.split('-')[1]);
-                    card.parentNode.parentNode.remove();
-                    const people = new People();
-                    people.deleteById(id);
+                    this.saveIdToDeleteInSession(card);
+                    location.hash = DELETE_MODAL_URL;
                 }
             }, {passive: true});
         }
+    }
+
+    static saveIdToDeleteInSession(card) {
+        const id = Number.parseInt(card.id.split('-')[1]);
+        const session = new Session();
+        session.insert('person-to-delete', id);
     }
 }

@@ -13,9 +13,18 @@ export default class People {
         return JSON.parse(localStorage.getItem(STORAGE_KEY));
     }
 
+    getById(id) {
+        const people = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        if (id in people) {
+            return people[id];
+        }
+        return null;
+    }
+
     deleteById(id) {
         let people = JSON.parse(localStorage.getItem(STORAGE_KEY));
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(people.splice(id, 1)));
+        people.splice(id, 1);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(people));
     }
 
     insert(person) {
