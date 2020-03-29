@@ -48,9 +48,9 @@ export default class FiscalCodeGenerator{
         if (new Date(birthDateString) > new Date()) {
             return '';
         }
-        let day = birthDateString.slice(0, 2);
-        const month = birthDateString.slice(3, 5);
-        const year = birthDateString.slice(8, 10);
+        const year = birthDateString.slice(2, 4);
+        const month = birthDateString.slice(5, 7);
+        let day = birthDateString.slice(8, 10);
         day = isMale ? day : 40 + parseInt(day);
         const monthMap = ' ABCDEHLMPRST';
         return year + monthMap[parseInt(month)] + day;
