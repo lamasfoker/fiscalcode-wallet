@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (e) {
         console.error('[SW] Service worker registration failed', e);
     }
-
+    //TODO: default tab must be LIST
     NavigationBar.render();
     List.render();
     Validate.render();

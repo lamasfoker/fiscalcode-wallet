@@ -16,6 +16,7 @@ export default class Omocodie{
                 person.fiscalCode = $('.alert-radio-group [aria-checked=true]').innerText;
                 people.insert(person);
                 session.deleteById('person');
+                //TODO: add the fiscal code to the list or refresh the page
             }
         };
         const cancel = {
@@ -29,6 +30,7 @@ export default class Omocodie{
                 value: fiscalCode
             }
         });
+        inputs[0].checked = true;
         Alert.show({
             header: 'Omocodie',
             message: 'Seleziona tra i seguenti il codice fiscale corretto',

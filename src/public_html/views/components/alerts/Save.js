@@ -21,6 +21,7 @@ export default class Save{
                 const people = new People();
                 people.insert(person);
                 session.deleteById('person');
+                //TODO: add the fiscal code to the list or refresh the page
             }
         };
         Alert.show({

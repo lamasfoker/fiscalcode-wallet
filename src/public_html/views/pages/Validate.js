@@ -43,7 +43,7 @@ export default class Validate{
                             
                             <ion-item>
                                 <ion-label>Maschio</ion-label>
-                                <ion-radio slot="start" value="madle"></ion-radio>
+                                <ion-radio slot="start" value="male"></ion-radio>
                             </ion-item>
                             
                             <ion-item>
@@ -68,6 +68,7 @@ export default class Validate{
     }
 
     static render() {
+        //TODO: i think that other fields except fiscal code must be hidden
         $('[tab=validate] ion-content').innerHTML = this.template();
         $('form').onsubmit = this.validateFiscalCode;
     }

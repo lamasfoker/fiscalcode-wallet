@@ -7,6 +7,7 @@ import Delete from "../components/alerts/Delete.js";
 
 export default class List{
     static emptyTemplate() {
+        //TODO: this is ugly
         return `
             <img src="/assets/images/no-elements.svg" alt="no researches saved">
             <h5>Ops...</h5>
@@ -15,6 +16,8 @@ export default class List{
     }
 
     static fullTemplate() {
+        //TODO: bar code image is wrong and it is not showed
+        //TODO: text showed must be This
         return `
             {{each(options.list)}}
                 <ion-card id="card-{{@index}}>
@@ -50,6 +53,7 @@ export default class List{
     }
 
     static addSwipeBehaviour() {
+        //TODO: this is buggy
         let previousX;
         for (let card of $$('ion-card')) {
             card.addEventListener('touchstart', (event) => {
