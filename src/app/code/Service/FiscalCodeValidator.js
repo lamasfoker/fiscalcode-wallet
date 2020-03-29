@@ -11,7 +11,7 @@ export default class FiscalCodeValidator {
             firstname: person.firstName,
             lastname: person.lastName,
             ismale: person.isMale,
-            birthdate: person.birthDate.split('/').reverse().join('/'),
+            birthdate: person.birthDate,
             municipality: person.municipality
         };
         try {

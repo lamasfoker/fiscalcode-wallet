@@ -1,96 +1,83 @@
 "use strict";
 
 const $ = document.querySelector.bind(document);
+import Save from "../components/alerts/Save.js";
+import Toast from "../components/Toast.js";
 import api from "../../services/Utils.js";
 import Session from "../../models/Session.js";
 
 export default class Generate{
     static template() {
         return `
-            <div class="row">
-                <form class="col s12" method="POST" action="#/save-fiscalcode" id="generate-fiscal-code-form">
-                    <div class="row label">
-                        <div class="col s12">
-                            <h6 class="label-inner">Nome</h6>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12 text">
-                            <input name="firstName" id="firstName" type="text" autocomplete="off" class="browser-default">
-                        </div>
-                    </div>
-                    <div class="row label">
-                        <div class="col s12">
-                            <h6 class="label-inner">Cognome</h6>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12 text">
-                            <input name="lastName" id="lastName" type="text" autocomplete="off" class="browser-default">
-                        </div>
-                    </div>
-                    <div class="row label">
-                        <div class="col s12">
-                            <h6 class="label-inner">Data di Nascita</h6>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12 text">
-                            <input name="birthDate" id="birthDate" type="text" autocomplete="off" class="browser-default" placeholder="gg/mm/aaaa">
-                        </div>
-                    </div>
-                    <div class="row label">
-                        <div class="col s12">
-                            <h6 class="label-inner">Sesso</h6>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12 text">
-                            <label>
-                                <input class="with-gap" name="gender" type="radio" checked="checked" id="male"/>
-                                <span>Maschio</span>
-                            </label>
-                            <label>
-                                <input class="with-gap" name="gender" type="radio" id="female"/>
-                                <span>Femmina</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row label">
-                        <div class="col s12">
-                            <h6 class="label-inner">Luogo di Nascita</h6>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12 text">
-                            <input name="municipality" id="municipality" type="text" autocomplete="off" class="browser-default">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <button class="blue-button" type="submit">Calcola</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+            <form>
+                <ion-list lines="full" class="ion-no-margin ion-no-padding">
+                    <ion-item>
+                        <ion-label position="floating">Nome</ion-label>
+                        <ion-input required type="text" class="generate-firstName"></ion-input>
+                    </ion-item>
+                
+                    <ion-item>
+                        <ion-label position="floating">Cognome</ion-label>
+                        <ion-input required type="text" class="generate-lastName"></ion-input>
+                    </ion-item>
+                
+                    <ion-item>
+                        <ion-label>Data di Nascita</ion-label>
+                        <ion-datetime
+                            display-format="DD MMM YYYY"
+                            month-short-names="Gen, Feb, Mar, Apr, Mag, Giu, Lug, Ago, Set, Ott, Nov, Dic"
+                            done-text="Fatto"
+                            cancel-text="Annulla"
+                            class="generate-birthDate"
+                            placeholder="Seleziona una Data"
+                            required
+                        ></ion-datetime>
+                    </ion-item>
+                    
+                    <ion-list>
+                        <ion-radio-group value="male" class="generate-gender">
+                            <ion-list-header>
+                                <ion-label>Sesso</ion-label>
+                            </ion-list-header>
+                            
+                            <ion-item>
+                                <ion-label>Maschio</ion-label>
+                                <ion-radio slot="start" value="male"></ion-radio>
+                            </ion-item>
+                            
+                            <ion-item>
+                                <ion-label>Femmina</ion-label>
+                                <ion-radio slot="start" value="female"></ion-radio>
+                            </ion-item>
+                        </ion-radio-group>
+                    </ion-list>
+                    
+                    <ion-item>
+                        <ion-label position="floating">Luogo di Nascita</ion-label>
+                        <ion-input required type="text" class="generate-municipality"></ion-input>
+                    </ion-item>
+                </ion-list>
+                
+                <div class="ion-padding">
+                    <ion-button expand="block" type="submit" class="ion-no-margin">Calcola</ion-button>
+                </div>
+            </form>
         `
     }
 
     static render() {
-        $('#header-title').innerText = 'Calcolatore di Codice Fiscale';
-        $('#main-container').innerHTML = this.template();
-        $('#generate-fiscal-code-form').onsubmit = this.generateFiscalCode;
-        this.fillFormFromSession();
+        $('[tab=generate] ion-content').innerHTML = this.template();
+        $('form').onsubmit = this.generateFiscalCode;
     }
 
     static async generateFiscalCode(event) {
         event.preventDefault();
         const body = {
-            firstName: $('#firstName').value,
-            lastName: $('#lastName').value,
-            birthDate: $('#birthDate').value,
-            isMale: $('#male').checked,
-            municipality: $('#municipality').value,
+            firstName: $('.generate-firstName').value,
+            lastName: $('.generate-lastName').value,
+            birthDate: $('.generate-birthDate').value.substring(0, 10),
+            isMale: $('.generate-gender').value === 'male',
+            municipality: $('.generate-municipality').value,
         };
         let response = await api.post('/generate-fiscal-code', body);
 
@@ -98,23 +85,9 @@ export default class Generate{
             const session = new Session();
             const fiscalCode = response.fiscalCode;
             session.insert('person', {...body, fiscalCode: fiscalCode});
-            location.hash = event.target.getAttribute("action");
+            Save.render();
         } else {
-            M.toast({html: 'Attenzione: controlla i dati inseriti', activationPercent: 0.4});
-        }
-    }
-
-    static fillFormFromSession() {
-        const session = new Session();
-        const person = session.getById('person');
-        if (person) {
-            $('#firstName').value = person.firstName;
-            $('#lastName').value = person.lastName;
-            $('#birthDate').value = person.birthDate;
-            $('#municipality').value = person.municipality;
-            if (!person.isMale) {
-                $('#female').checked = true;
-            }
+            Toast.show('Attenzione: controlla i dati inseriti');
         }
     }
 }

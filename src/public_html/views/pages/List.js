@@ -1,51 +1,45 @@
 "use strict";
 
+//TODO: import $ and $$ as external function
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
-const DELETE_MODAL_URL = '#/delete-fiscalcode';
 import Session from "../../models/Session.js";
 import People from "../../models/People.js";
+import Delete from "../components/alerts/Delete.js";
 
 export default class List{
     static emptyTemplate() {
         return `
-            <div class="no-elements">
-                <img src="/assets/images/no-elements.svg" alt="no researches saved">
-                <h5>Ops...</h5>
-                <div>
-                    <p>non hai salvato ancora nessun codice fiscale.</p>
-                </div>
-            </div>
+            <img src="/assets/images/no-elements.svg" alt="no researches saved">
+            <h5>Ops...</h5>
+            <p>non hai salvato ancora nessun codice fiscale.</p>
         `
     }
 
     static fullTemplate() {
         return `
             {{each(options.list)}}
-                <div class="row">
-                    <div class="col s12 m6">
-                        <div class="card blue-grey darken-1" id="card-{{@index}}">
-                            <div class="card-content white-text">
-                                <span class="card-title">{{@this.firstName}} {{@this.lastName}}</span>
-                                <p>Data di Nascita: {{@this.birthDate}}<br/>
-                                Sesso: {{if(@this.isMale)}}Uomo{{#else}}Donna{{/if}}<br/>
-                                Comune di Nascita: {{@this.municipality}}<br/>
-                                Codice FIscale: {{@this.fiscalCode}}</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="http://barcodes4.me/barcode/c39/{{@this.fiscalCode}}.png" target="_blank">Clicca qui per vedere il Codice a Barre</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <ion-card id="card-{{@index}}>
+                    <img src="http://barcodes4.me/barcode/c39/{{@this.fiscalCode}}.png" />
+                    <ion-card-header>
+                        <ion-card-subtitle>Codice Fiscale #{{@index}}</ion-card-subtitle>
+                        <ion-card-title>{{@this.firstName}} {{@this.lastName}}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        Data di Nascita: {{@this.birthDate}}<br/>
+                        Sesso: {{if(@this.isMale)}}Uomo{{#else}}Donna{{/if}}<br/>
+                        Comune di Nascita: {{@this.municipality}}<br/>
+                        Codice FIscale: {{@this.fiscalCode}}
+                    </ion-card-content>
+                </ion-card>
             {{/each}}
         `
     }
 
     static render() {
+        //TODO: add card after save
         const people = new People();
-        const container = $('#main-container');
-        $('#header-title').innerText = 'Codici Fiscali Salvati';
+        const container = $('[tab=list] ion-content');
         let list = people.getList();
         if (list.length > 0) {
             container.innerHTML = Sqrl.Render(this.fullTemplate(), {
@@ -59,7 +53,7 @@ export default class List{
 
     static addSwipeBehaviour() {
         let previousX;
-        for (let card of $$('.card')) {
+        for (let card of $$('ion-card')) {
             card.addEventListener('touchstart', (event) => {
                 previousX = event.changedTouches[0].screenX;
             }, {passive: true});
@@ -71,7 +65,7 @@ export default class List{
                 previousX = currentX;
                 if (Math.abs(currentOffset) > 350) {
                     this.saveIdToDeleteInSession(card);
-                    location.hash = DELETE_MODAL_URL;
+                    Delete.render();
                 }
             }, {passive: true});
 
@@ -81,7 +75,7 @@ export default class List{
                     card.style.left = '0px';
                 } else {
                     this.saveIdToDeleteInSession(card);
-                    location.hash = DELETE_MODAL_URL;
+                    Delete.render();
                 }
             }, {passive: true});
         }

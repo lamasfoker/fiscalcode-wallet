@@ -23,6 +23,7 @@ export default class FiscalCodeGenerator{
             return firstNameConsonants[0] + firstNameConsonants.substr(2, 2);
         } else {
             //First three consonants. If not enough consonants, add the vowels. If not enough, pad with X
+            //TODO: replace substr with substring
             const firstNameVowels = firstName.replace(/[^AEIOU]/g, "");
             return (firstNameConsonants + firstNameVowels + "XXX").substr(0, 3);
         }
@@ -41,10 +42,10 @@ export default class FiscalCodeGenerator{
 
     getTokenFromBirthDateAndGender(birthDateString, isMale) {
         birthDateString = birthDateString.trim();
-        if (/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/.test(birthDateString) === false || typeof isMale !== "boolean") {
+        if (/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(birthDateString) === false || typeof isMale !== "boolean") {
             return '';
         }
-        if (this.getBirthDate(birthDateString) > new Date()) {
+        if (new Date(birthDateString) > new Date()) {
             return '';
         }
         let day = birthDateString.slice(0, 2);
@@ -88,10 +89,5 @@ export default class FiscalCodeGenerator{
             }
         }
         return evenSet[sum % 26];
-    }
-
-    getBirthDate(birthDateString) {
-        birthDateString = birthDateString.split('/').reverse().join('-');
-        return new Date(birthDateString);
     }
 }
