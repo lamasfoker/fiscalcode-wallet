@@ -1,9 +1,8 @@
 "use strict";
 
-const $ = document.querySelector.bind(document);
 import Save from "../components/alerts/Save.js";
 import Toast from "../components/Toast.js";
-import api from "../../services/Utils.js";
+import {post, $} from "../../services/Utils.js";
 import Session from "../../models/Session.js";
 
 export default class Generate{
@@ -79,7 +78,7 @@ export default class Generate{
             isMale: $('.generate-gender').value === 'male',
             municipality: $('.generate-municipality').value,
         };
-        let response = await api.post('/generate-fiscal-code', body);
+        let response = await post('/generate-fiscal-code', body);
 
         if (response.isValid) {
             const session = new Session();

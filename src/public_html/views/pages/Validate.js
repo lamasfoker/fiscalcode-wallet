@@ -1,7 +1,6 @@
 "use strict";
 
-const $ = document.querySelector.bind(document);
-import api from "../../services/Utils.js";
+import {post, $} from "../../services/Utils.js";
 import Toast from "../components/Toast.js";
 
 export default class Validate{
@@ -91,7 +90,7 @@ export default class Validate{
             body.isMale = body.isMale === 'male';
         }
 
-        let response = await api.post('/validate-fiscal-code', body);
+        let response = await post('/validate-fiscal-code', body);
 
         Toast.show(response.message);
     }

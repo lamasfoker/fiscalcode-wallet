@@ -1,10 +1,9 @@
 "use strict";
 
-const $ = document.querySelector.bind(document);
 import Alert from "../Alert.js";
 import People from "../../../models/People.js";
 import Session from "../../../models/Session.js";
-import api from "../../../services/Utils.js";
+import {post, $} from "../../../services/Utils.js";
 
 export default class Omocodie{
     static async render() {
@@ -22,7 +21,7 @@ export default class Omocodie{
         const cancel = {
             text: 'Annulla'
         };
-        let response = await api.post('/calculate-omocodie', {fiscalCode: person.fiscalCode});
+        let response = await post('/calculate-omocodie', {fiscalCode: person.fiscalCode});
         const inputs = response.list.map(fiscalCode => {
             return {
                 type: 'radio',

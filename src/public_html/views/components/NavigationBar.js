@@ -1,6 +1,6 @@
 "use strict";
 
-const $ = document.querySelector.bind(document);
+import {$} from '../../services/Utils.js';
 
 export default class NavigationBar{
     static template() {

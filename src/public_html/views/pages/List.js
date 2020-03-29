@@ -1,8 +1,6 @@
 "use strict";
 
-//TODO: import $ and $$ as external function
-const $ = document.querySelector.bind(document);
-const $$ = document.querySelectorAll.bind(document);
+import {$, $$} from '../../services/Utils.js';
 import Session from "../../models/Session.js";
 import People from "../../models/People.js";
 import Delete from "../components/alerts/Delete.js";

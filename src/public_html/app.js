@@ -1,13 +1,13 @@
 "use strict";
 
-import Utils from './services/Utils.js'
 import NavigationBar from './views/components/NavigationBar.js'
 import Validate from './views/pages/Validate.js'
 import List from './views/pages/List.js'
 import Generate from './views/pages/Generate.js'
+import {isBrowserCompatible} from './services/Utils.js'
 
 document.addEventListener('DOMContentLoaded', async () => {
-    if (!Utils.isBrowserCompatible()) {
+    if (!isBrowserCompatible()) {
         return;
     }
 
