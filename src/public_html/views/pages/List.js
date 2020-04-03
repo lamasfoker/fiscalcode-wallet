@@ -29,7 +29,7 @@ export default class List{
                     <ion-card-content>
                         Data di Nascita: {{@this.birthDate}}<br/>
                         Sesso: {{if(@this.isMale)}}UOMO{{#else}}DONNA{{/if}}<br/>
-                        Comune di Nascita: {{@this.municipality}}
+                        Luogo di Nascita: {{@this.municipality}}
                     </ion-card-content>
                 </ion-card>
             {{/each}}
