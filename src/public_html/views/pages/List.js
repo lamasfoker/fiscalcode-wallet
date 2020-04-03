@@ -7,11 +7,14 @@ import Delete from "../components/alerts/Delete.js";
 
 export default class List{
     static emptyTemplate() {
-        //TODO: this is ugly
         return `
-            <img src="/assets/images/no-elements.svg" alt="no researches saved">
-            <h5>Ops...</h5>
-            <p>non hai salvato ancora nessun codice fiscale.</p>
+            <div style="text-align:center">
+                <img src="/assets/images/no-elements.png" alt="no researches saved">
+                <p>
+                    Non hai ancora nessun <ion-text color="primary">Codice Fiscale</ion-text> salvato.<br/>
+                    Premi sull'icona 🔄 per generarlo.
+                </p>
+            </div>
         `
     }
 
