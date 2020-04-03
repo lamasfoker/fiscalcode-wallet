@@ -16,21 +16,20 @@ export default class List{
     }
 
     static fullTemplate() {
-        //TODO: bar code image is wrong and it is not showed
-        //TODO: text showed must be This
         return `
             {{each(options.list)}}
-                <ion-card id="card-{{@index}}>
-                    <img src="http://barcodes4.me/barcode/c39/{{@this.fiscalCode}}.png" />
+                <ion-card id="card-{{@index}}" color="primary">
+                    <a href="http://barcodes4.me/barcode/c39/{{@this.fiscalCode.toLowerCase()}}.png" target="_black">
+                        <img src="http://barcodes4.me/barcode/c39/{{@this.fiscalCode.toLowerCase()}}.png" alt="Codice a Barre della Tessera Sanitaria" />
+                    </a>
                     <ion-card-header>
-                        <ion-card-subtitle>Codice Fiscale #{{@index}}</ion-card-subtitle>
+                        <ion-card-subtitle>{{@this.fiscalCode}}</ion-card-subtitle>
                         <ion-card-title>{{@this.firstName}} {{@this.lastName}}</ion-card-title>
                     </ion-card-header>
                     <ion-card-content>
                         Data di Nascita: {{@this.birthDate}}<br/>
-                        Sesso: {{if(@this.isMale)}}Uomo{{#else}}Donna{{/if}}<br/>
-                        Comune di Nascita: {{@this.municipality}}<br/>
-                        Codice FIscale: {{@this.fiscalCode}}
+                        Sesso: {{if(@this.isMale)}}UOMO{{#else}}DONNA{{/if}}<br/>
+                        Comune di Nascita: {{@this.municipality}}
                     </ion-card-content>
                 </ion-card>
             {{/each}}

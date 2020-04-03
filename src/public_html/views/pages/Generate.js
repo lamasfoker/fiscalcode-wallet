@@ -72,17 +72,18 @@ export default class Generate{
     static async generateFiscalCode(event) {
         event.preventDefault();
         const body = {
-            firstName: $('.generate-firstName').value,
-            lastName: $('.generate-lastName').value,
+            firstName: $('.generate-firstName').value.toUpperCase(),
+            lastName: $('.generate-lastName').value.toUpperCase(),
             birthDate: $('.generate-birthDate').value.substring(0, 10),
             isMale: $('.generate-gender').value === 'male',
-            municipality: $('.generate-municipality').value,
+            municipality: $('.generate-municipality').value.toUpperCase(),
         };
         let response = await post('/generate-fiscal-code', body);
 
         if (response.isValid) {
             const session = new Session();
             const fiscalCode = response.fiscalCode;
+            body.birthDate = body.birthDate.split('-').reverse().join('/');
             session.insert('person', {...body, fiscalCode: fiscalCode});
             Save.render();
         } else {
