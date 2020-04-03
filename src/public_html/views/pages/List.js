@@ -53,7 +53,6 @@ export default class List{
     }
 
     static addSwipeBehaviour() {
-        //TODO: this is buggy
         let previousX;
         for (let card of $$('ion-card')) {
             card.addEventListener('touchstart', (event) => {
@@ -65,19 +64,15 @@ export default class List{
                 let currentOffset = card.style.left===''?0:Number.parseInt(card.style.left.slice(0, -2));
                 card.style.left = (currentOffset + currentX - previousX) + 'px';
                 previousX = currentX;
-                if (Math.abs(currentOffset) > 350) {
-                    this.saveIdToDeleteInSession(card);
-                    Delete.render();
-                }
             }, {passive: true});
 
             card.addEventListener('touchend', async (event) => {
                 let currentOffset = card.style.left===''?0:Number.parseInt(card.style.left.slice(0, -2));
-                if (Math.abs(currentOffset) < 350) {
-                    card.style.left = '0px';
-                } else {
+                if (Math.abs(currentOffset) > 350) {
                     this.saveIdToDeleteInSession(card);
                     Delete.render();
+                } else {
+                    card.style.left = '0px';
                 }
             }, {passive: true});
         }
