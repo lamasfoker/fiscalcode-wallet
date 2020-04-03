@@ -4,6 +4,7 @@ import Omocodie from "./Omocodie.js";
 import People from "../../../models/People.js";
 import Session from "../../../models/Session.js";
 import Alert from "../Alert.js";
+import List from "../../pages/List.js";
 
 export default class Save{
     static render() {
@@ -21,7 +22,7 @@ export default class Save{
                 const people = new People();
                 people.insert(person);
                 session.deleteById('person');
-                //TODO: add the fiscal code to the list or refresh the page
+                List.render();
             }
         };
         Alert.show({

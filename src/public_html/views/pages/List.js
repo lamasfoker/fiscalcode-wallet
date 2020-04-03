@@ -37,7 +37,6 @@ export default class List{
     }
 
     static render() {
-        //TODO: add card after save
         const people = new People();
         const container = $('[tab=list] ion-content');
         let list = people.getList();

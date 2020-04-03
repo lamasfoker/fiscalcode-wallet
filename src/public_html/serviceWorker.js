@@ -16,6 +16,7 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('fetch',event => {
+    //TODO: cache the bar code image
     if (event.request.method === 'GET' && event.request.headers.get('accept').includes('text/html')) {
         event.respondWith(
             fetch(event.request.url).catch(error => {

@@ -4,6 +4,7 @@ import Alert from "../Alert.js";
 import People from "../../../models/People.js";
 import Session from "../../../models/Session.js";
 import {post, $} from "../../../services/Utils.js";
+import List from "../../pages/List.js";
 
 export default class Omocodie{
     static async render() {
@@ -16,7 +17,7 @@ export default class Omocodie{
                 person.fiscalCode = $('.alert-radio-group [aria-checked=true]').innerText;
                 people.insert(person);
                 session.deleteById('person');
-                //TODO: add the fiscal code to the list or refresh the page
+                List.render();
             }
         };
         const cancel = {

@@ -8,6 +8,7 @@ import express from "express";
 const app = express();
 const PORT = process.env.PORT || 4000;
 //configuration for public folder
+//TODO: add .well-known/assetlinks.json file
 import path from "path";
 app.use(express.static(path.resolve() + "/src/public_html"));
 //configuration for accept json from post
