@@ -20,12 +20,11 @@ export default class FiscalCodeGenerator{
         const firstNameConsonants = firstName.replace(/[^BCDFGHJKLMNPQRSTVWXYZ]/g, "");
         if (firstNameConsonants.length >= 4) {
             //First, third and fourth consonant
-            return firstNameConsonants[0] + firstNameConsonants.substr(2, 2);
+            return firstNameConsonants[0] + firstNameConsonants.substring(2, 4);
         } else {
             //First three consonants. If not enough consonants, add the vowels. If not enough, pad with X
-            //TODO: replace substr with substring
             const firstNameVowels = firstName.replace(/[^AEIOU]/g, "");
-            return (firstNameConsonants + firstNameVowels + "XXX").substr(0, 3);
+            return (firstNameConsonants + firstNameVowels + "XXX").substring(0, 3);
         }
     }
 
@@ -37,7 +36,7 @@ export default class FiscalCodeGenerator{
         const lastNameConsonants = lastName.replace(/[^BCDFGHJKLMNPQRSTVWXYZ]/g, "");
         const lastNameVowels = lastName.replace(/[^AEIOU]/g, "");
         //First three consonants. If not enough consonants, add the vowels. If not enough, pad with X
-        return (lastNameConsonants + lastNameVowels + "XXX").substr(0, 3);
+        return (lastNameConsonants + lastNameVowels + "XXX").substring(0, 3);
     }
 
     getTokenFromBirthDateAndGender(birthDateString, isMale) {
