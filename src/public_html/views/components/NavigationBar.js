@@ -1,6 +1,7 @@
 "use strict";
 
 import {$} from '../../services/Utils.js';
+import People from "../../models/People.js";
 
 export default class NavigationBar{
     static template() {
@@ -50,5 +51,12 @@ export default class NavigationBar{
 
     static render() {
         $('ion-app').innerHTML = this.template();
+        const people = new People();
+        const ionTabs = $('ion-tabs');
+        if (people.getList().length > 0) {
+            ionTabs.select('list');
+        } else {
+            ionTabs.select('generate');
+        }
     }
 }

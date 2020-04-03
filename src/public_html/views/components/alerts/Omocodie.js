@@ -8,6 +8,7 @@ import List from "../../pages/List.js";
 
 export default class Omocodie{
     static async render() {
+        //TODO: fiscal code in small device can be hidden
         const session = new Session();
         let person = session.getById('person');
         const save = {
@@ -18,6 +19,7 @@ export default class Omocodie{
                 people.insert(person);
                 session.deleteById('person');
                 List.render();
+                $('ion-tabs').select('list');
             }
         };
         const cancel = {

@@ -5,6 +5,7 @@ import People from "../../../models/People.js";
 import Session from "../../../models/Session.js";
 import Alert from "../Alert.js";
 import List from "../../pages/List.js";
+import {$} from "../../../services/Utils.js";
 
 export default class Save{
     static render() {
@@ -23,6 +24,7 @@ export default class Save{
                 people.insert(person);
                 session.deleteById('person');
                 List.render();
+                $('ion-tabs').select('list');
             }
         };
         Alert.show({
