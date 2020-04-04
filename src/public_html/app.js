@@ -7,7 +7,6 @@ import Generate from './views/pages/Generate.js'
 import {isBrowserCompatible} from './services/Utils.js'
 
 document.addEventListener('DOMContentLoaded', async () => {
-    //TODO: add icons
     if (!isBrowserCompatible()) {
         return;
     }
