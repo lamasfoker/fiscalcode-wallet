@@ -2,6 +2,7 @@
 
 import {post, $} from "../../services/Utils.js";
 import Toast from "../components/Toast.js";
+import Loading from "../components/Loading.js";
 
 export default class Validate{
     static template() {
@@ -76,6 +77,8 @@ export default class Validate{
 
     static async validateFiscalCode(event) {
         event.preventDefault();
+        const loading = new Loading();
+        loading.present();
         const body = {
             fiscalCode: $('.validate-fiscalCode').value,
             firstName: $('.validate-firstName').value,
@@ -93,7 +96,7 @@ export default class Validate{
         }
 
         let response = await post('/validate-fiscal-code', body);
-
+        loading.dismiss();
         Toast.show(response.message);
     }
 }

@@ -4,6 +4,7 @@ import Save from "../components/alerts/Save.js";
 import Toast from "../components/Toast.js";
 import {post, $} from "../../services/Utils.js";
 import Session from "../../models/Session.js";
+import Loading from "../components/Loading.js";
 
 export default class Generate{
     static template() {
@@ -71,6 +72,8 @@ export default class Generate{
 
     static async generateFiscalCode(event) {
         event.preventDefault();
+        const loading = new Loading();
+        loading.present();
         const body = {
             firstName: $('.generate-firstName').value.toUpperCase(),
             lastName: $('.generate-lastName').value.toUpperCase(),
@@ -79,7 +82,7 @@ export default class Generate{
             municipality: $('.generate-municipality').value.toUpperCase(),
         };
         let response = await post('/generate-fiscal-code', body);
-
+        loading.dismiss();
         if (response.isValid) {
             const session = new Session();
             const fiscalCode = response.fiscalCode;
