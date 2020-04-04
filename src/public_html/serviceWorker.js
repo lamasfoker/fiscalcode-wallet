@@ -16,7 +16,12 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('fetch',event => {
-    //TODO: cache the bar code image
+    if (event.request.url.indexOf('/bar-code') >= 0) {
+        //cache all bar code images
+        caches.open(cacheName).then( (cache) => {
+            return cache.add(event.request.url);
+        })
+    }
     if (event.request.method === 'GET' && event.request.headers.get('accept').includes('text/html')) {
         event.respondWith(
             fetch(event.request.url).catch(error => {

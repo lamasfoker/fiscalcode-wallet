@@ -3,6 +3,7 @@ import Person from "./app/code/Model/Person.js";
 import FiscalCodeGenerator from "./app/code/Service/FiscalCodeGenerator.js";
 import FiscalCodeValidator from "./app/code/Service/FiscalCodeValidator.js";
 import OmocodieCalculator from "./app/code/Service/OmocodieCalculator.js";
+import axios from "axios";
 //starting configuration
 import express from "express";
 const app = express();
@@ -40,6 +41,15 @@ app.post("/calculate-omocodie", async (req, res) => {
   res.json({
     list: calculator.calculate(req.body.fiscalCode)
   })
+});
+
+app.get("/bar-code/:fiscalCode", async (req, res) => {
+  const url = 'http://barcodes4.me/barcode/c39/' + req.params.fiscalCode;
+  const response = await axios.get(url, {
+    responseType: 'arraybuffer'
+  });
+  res.type('image/png');
+  res.send(response.data);
 });
 
 app.get("*", (req, res) => {

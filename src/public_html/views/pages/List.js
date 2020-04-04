@@ -23,7 +23,7 @@ export default class List{
             {{each(options.list)}}
                 <ion-card id="card-{{@index}}" color="primary">
                     <a href="http://barcodes4.me/barcode/c39/{{@this.fiscalCode.toLowerCase()}}.png" target="_black">
-                        <img src="http://barcodes4.me/barcode/c39/{{@this.fiscalCode.toLowerCase()}}.png" alt="Codice a Barre della Tessera Sanitaria" />
+                        <img src="/bar-code/{{@this.fiscalCode.toLowerCase()}}.png" alt="Codice a Barre della Tessera Sanitaria" />
                     </a>
                     <ion-card-header>
                         <ion-card-subtitle>{{@this.fiscalCode}}</ion-card-subtitle>
