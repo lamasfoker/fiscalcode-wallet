@@ -54,6 +54,7 @@ export default class List{
     }
 
     static addSwipeBehaviour() {
+        //TODO: cancel swipe if deltay is too wide
         let previousX;
         for (let card of $$('ion-card')) {
             card.addEventListener('touchstart', (event) => {

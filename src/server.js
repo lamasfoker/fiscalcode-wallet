@@ -7,9 +7,8 @@ import axios from "axios";
 //starting configuration
 import express from "express";
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = 4000;
 //configuration for public folder
-//TODO: add .well-known/assetlinks.json file
 import path from "path";
 app.use(express.static(path.resolve() + "/src/public_html"));
 //configuration for accept json from post
@@ -50,6 +49,20 @@ app.get("/bar-code/:fiscalCode", async (req, res) => {
   });
   res.type('image/png');
   res.send(response.data);
+});
+
+app.get("/.well-known/assetlinks.json", async (req, res) => {
+  const packageName = process.env.PACKAGE_NAME || 'com.lamasfoker.example';
+  const sha256 = process.env.SHA256 || '';
+  res.json([{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": packageName,
+      "sha256_cert_fingerprints":
+          [sha256]
+    }
+  }]);
 });
 
 app.get("*", (req, res) => {

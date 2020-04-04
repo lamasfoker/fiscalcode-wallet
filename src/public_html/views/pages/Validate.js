@@ -70,7 +70,6 @@ export default class Validate{
 
     static render() {
         //TODO: i think that other fields except fiscal code must be hidden
-        //TODO: in smartphone the keyboard show event move all content up
         $('[tab=validate] ion-content').innerHTML = this.template();
         $('form').onsubmit = this.validateFiscalCode;
     }
