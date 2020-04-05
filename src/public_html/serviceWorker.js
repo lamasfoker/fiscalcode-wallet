@@ -4,7 +4,7 @@ let filesToCache = [
     '/offline.html',
     '/manifest.json',
     '/favicon.ico',
-    '/assets/images/icon-192.png'
+    '/assets/images/icon-192x192.png'
 ];
 
 self.addEventListener('install', (event) => {
