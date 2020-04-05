@@ -30,7 +30,6 @@ export default class Generate{
                             cancel-text="Annulla"
                             class="generate-birthDate"
                             placeholder="Seleziona una Data"
-                            required
                         ></ion-datetime>
                     </ion-item>
                     
@@ -59,7 +58,7 @@ export default class Generate{
                 </ion-list>
                 
                 <div class="ion-padding">
-                    <ion-button expand="block" type="submit" class="ion-no-margin">Calcola</ion-button>
+                    <ion-button disabled="true" expand="block" type="submit" class="ion-no-margin">Calcola</ion-button>
                 </div>
             </form>
         `
@@ -68,6 +67,9 @@ export default class Generate{
     static render() {
         $('[tab=generate] ion-content').innerHTML = this.template();
         $('form').onsubmit = this.generateFiscalCode;
+        $('ion-datetime').addEventListener('ionChange', () => {
+            $('ion-button').setAttribute('disabled', 'false');
+        });
     }
 
     static async generateFiscalCode(event) {
