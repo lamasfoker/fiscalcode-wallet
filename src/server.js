@@ -7,7 +7,7 @@ import axios from "axios";
 //starting configuration
 import express from "express";
 const app = express();
-const PORT = 4000;
+const PORT = process.env.PORT ||4000;
 //configuration for public folder
 import path from "path";
 app.use(express.static(path.resolve() + "/src/public_html"));
