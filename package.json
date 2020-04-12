@@ -4,7 +4,7 @@
   },
   "type": "module",
   "engines": {
-    "node": "^13.10"
+    "node": "^10.10"
   },
   "dependencies": {
     "axios": "^0.19.2",
