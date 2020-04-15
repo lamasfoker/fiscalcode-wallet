@@ -69,7 +69,7 @@ export default class List{
             }, {passive: true});
 
             card.addEventListener('touchend', async (event) => {
-                if (Math.abs(this.getCardXOffset(card)) > 350) {
+                if (Math.abs(this.getCardXOffset(card)) > screen.width*0.75) {
                     this.saveIdToDeleteInSession(card);
                     Delete.render();
                 } else {
