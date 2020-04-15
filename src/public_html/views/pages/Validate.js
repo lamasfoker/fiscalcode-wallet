@@ -23,6 +23,11 @@ export default class Validate{
                         <ion-label position="floating">Cognome</ion-label>
                         <ion-input type="text" class="validate-lastName" autocapitalize="on"></ion-input>
                     </ion-item>
+                    
+                    <ion-item>
+                        <ion-label position="floating">Luogo di Nascita</ion-label>
+                        <ion-input type="text" class="validate-municipality" autocapitalize="on"></ion-input>
+                    </ion-item>
                 
                     <ion-item>
                         <ion-label>Data di Nascita</ion-label>
@@ -53,11 +58,6 @@ export default class Validate{
                             </ion-item>
                         </ion-radio-group>
                     </ion-list>
-                    
-                    <ion-item>
-                        <ion-label position="floating">Luogo di Nascita</ion-label>
-                        <ion-input type="text" class="validate-municipality" autocapitalize="on"></ion-input>
-                    </ion-item>
                 </ion-list>
 
                 
