@@ -60,7 +60,6 @@ export default class Validate{
                     </ion-list>
                 </ion-list>
 
-                
                 <div class="ion-padding">
                     <ion-button expand="block" type="submit" class="ion-no-margin">Valida</ion-button>
                 </div>
@@ -70,7 +69,6 @@ export default class Validate{
 
     static render() {
         //TODO: i think that other fields except fiscal code must be hidden
-        //TODO: the keyboard hides the upper values
         $('[tab=validate] ion-content').innerHTML = this.template();
         $('form').onsubmit = this.validateFiscalCode;
     }
