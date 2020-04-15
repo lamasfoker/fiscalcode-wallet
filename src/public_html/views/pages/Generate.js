@@ -13,12 +13,12 @@ export default class Generate{
                 <ion-list lines="full" class="ion-no-margin ion-no-padding">
                     <ion-item>
                         <ion-label position="floating">Nome</ion-label>
-                        <ion-input required type="text" class="generate-firstName"></ion-input>
+                        <ion-input required type="text" class="generate-firstName" autocapitalize="on"></ion-input>
                     </ion-item>
                 
                     <ion-item>
                         <ion-label position="floating">Cognome</ion-label>
-                        <ion-input required type="text" class="generate-lastName"></ion-input>
+                        <ion-input required type="text" class="generate-lastName" autocapitalize="on"></ion-input>
                     </ion-item>
                 
                     <ion-item>
@@ -53,7 +53,7 @@ export default class Generate{
                     
                     <ion-item>
                         <ion-label position="floating">Luogo di Nascita</ion-label>
-                        <ion-input required type="text" class="generate-municipality"></ion-input>
+                        <ion-input required type="text" class="generate-municipality" autocapitalize="on"></ion-input>
                     </ion-item>
                 </ion-list>
                 

@@ -11,17 +11,17 @@ export default class Validate{
                 <ion-list lines="full" class="ion-no-margin ion-no-padding">
                     <ion-item>
                         <ion-label position="floating">Codice Fiscale</ion-label>
-                        <ion-input required type="text" class="validate-fiscalCode"></ion-input>
+                        <ion-input required type="text" class="validate-fiscalCode" autocapitalize="on"></ion-input>
                     </ion-item>
                 
                     <ion-item>
                         <ion-label position="floating">Nome</ion-label>
-                        <ion-input type="text" class="validate-firstName"></ion-input>
+                        <ion-input type="text" class="validate-firstName" autocapitalize="on"></ion-input>
                     </ion-item>
                 
                     <ion-item>
                         <ion-label position="floating">Cognome</ion-label>
-                        <ion-input type="text" class="validate-lastName"></ion-input>
+                        <ion-input type="text" class="validate-lastName" autocapitalize="on"></ion-input>
                     </ion-item>
                 
                     <ion-item>
@@ -56,7 +56,7 @@ export default class Validate{
                     
                     <ion-item>
                         <ion-label position="floating">Luogo di Nascita</ion-label>
-                        <ion-input type="text" class="validate-municipality"></ion-input>
+                        <ion-input type="text" class="validate-municipality" autocapitalize="on"></ion-input>
                     </ion-item>
                 </ion-list>
 
