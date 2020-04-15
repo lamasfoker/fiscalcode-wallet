@@ -63,14 +63,13 @@ export default class List{
 
             card.addEventListener('touchmove', (event) => {
                 let currentX = event.changedTouches[0].screenX;
-                let currentOffset = card.style.left===''?0:Number.parseInt(card.style.left.slice(0, -2));
-                card.style.left = (currentOffset + currentX - previousX) + 'px';
+                let currentXOffset = this.getCardXOffset(card);
+                card.style.left = (currentXOffset + currentX - previousX) + 'px';
                 previousX = currentX;
             }, {passive: true});
 
             card.addEventListener('touchend', async (event) => {
-                let currentOffset = card.style.left===''?0:Number.parseInt(card.style.left.slice(0, -2));
-                if (Math.abs(currentOffset) > 350) {
+                if (Math.abs(this.getCardXOffset(card)) > 350) {
                     this.saveIdToDeleteInSession(card);
                     Delete.render();
                 } else {
@@ -84,5 +83,9 @@ export default class List{
         const id = Number.parseInt(card.id.split('-')[1]);
         const session = new Session();
         session.insert('person-to-delete', id);
+    }
+
+    static getCardXOffset(card) {
+        return card.style.left===''?0:Number.parseInt(card.style.left.slice(0, -2));
     }
 }
